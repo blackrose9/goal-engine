@@ -1,0 +1,18 @@
+<div>
+   <h1>My Goals</h1>
+   <div class="container col-md-6">
+      <app-goal-form (addGoal)="addNewGoal($event)"></app-goal-form>
+    </div>
+   <ul>
+      <li *ngFor='let goal of goals; let i = index'>
+         {{goal.id}}
+         {{goal.name}}
+         <a (click)='toggleDetails(i)'>ViewDetails</a>
+         <app-goal-detail *ngIf='goal.showDescription' [goal]='goal' (isComplete) = 'completeGoal($event,i)'></app-goal-detail>
+         <hr/>
+      </li>
+      
+      <!-- only appears if the condition is met -->
+      <p *ngIf='goals.length > 5'>Your goals are too many</p>
+   </ul>
+</div>
